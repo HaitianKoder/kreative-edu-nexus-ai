@@ -103,10 +103,10 @@ export const StudentSearch: React.FC<StudentSearchProps> = ({
               onChange={(e) => onFiltersChange({ ...filters, aiUsagePattern: e.target.value })}
             >
               <option value="">All Patterns</option>
-              <option value="heavy">Heavy User (>80% quota)</option>
+              <option value="heavy">Heavy User (&gt;80% quota)</option>
               <option value="moderate">Moderate User (40-80%)</option>
               <option value="light">Light User (10-40%)</option>
-              <option value="minimal">Minimal User (<10%)</option>
+              <option value="minimal">Minimal User (&lt;10%)</option>
             </select>
           </div>
 
