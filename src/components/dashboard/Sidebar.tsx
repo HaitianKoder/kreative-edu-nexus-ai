@@ -8,7 +8,13 @@ import {
   Database, 
   Grid2X2, 
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  GraduationCap,
+  BookOpen,
+  UserCheck,
+  CreditCard,
+  FileText,
+  Calendar
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -17,36 +23,91 @@ interface SidebarProps {
   onToggle: () => void;
 }
 
-const navigationItems = [
+const navigationSections = [
   {
-    name: 'Dashboard',
-    href: '/',
-    icon: LayoutDashboard,
-    description: 'Overview and analytics'
+    title: 'Overview',
+    items: [
+      {
+        name: 'Dashboard',
+        href: '/',
+        icon: LayoutDashboard,
+        description: 'Integrated SMS+LMS overview'
+      }
+    ]
   },
   {
-    name: 'User Management',
-    href: '/users',
-    icon: Users,
-    description: 'Manage students, teachers, and admins'
+    title: 'Academic Operations',
+    items: [
+      {
+        name: 'Student Management',
+        href: '/students',
+        icon: Users,
+        description: 'Student records, enrollment, progress'
+      },
+      {
+        name: 'Admissions & Registration',
+        href: '/admissions',
+        icon: UserCheck,
+        description: 'Applications, enrollment pipeline'
+      },
+      {
+        name: 'Financial Services',
+        href: '/financial',
+        icon: CreditCard,
+        description: 'Tuition, payments, financial aid'
+      }
+    ]
   },
   {
-    name: 'System Health',
-    href: '/system',
-    icon: Database,
-    description: 'Monitor system performance'
+    title: 'Learning Management',
+    items: [
+      {
+        name: 'Course Management',
+        href: '/courses',
+        icon: BookOpen,
+        description: 'Courses, assignments, scheduling'
+      },
+      {
+        name: 'Academic Calendar',
+        href: '/calendar',
+        icon: Calendar,
+        description: 'Terms, deadlines, events'
+      }
+    ]
   },
   {
-    name: 'AI Analytics',
-    href: '/ai-analytics',
-    icon: Grid2X2,
-    description: 'AI usage and performance metrics'
+    title: 'Analytics & AI',
+    items: [
+      {
+        name: 'AI Analytics',
+        href: '/ai-analytics',
+        icon: Grid2X2,
+        description: 'AI usage and performance metrics'
+      },
+      {
+        name: 'Reporting & Compliance',
+        href: '/reporting',
+        icon: FileText,
+        description: 'Academic reports, compliance dashboards'
+      }
+    ]
   },
   {
-    name: 'Settings',
-    href: '/settings',
-    icon: Settings,
-    description: 'System configuration'
+    title: 'System Management',
+    items: [
+      {
+        name: 'System Health',
+        href: '/system',
+        icon: Database,
+        description: 'Monitor system performance'
+      },
+      {
+        name: 'Settings',
+        href: '/settings',
+        icon: Settings,
+        description: 'System configuration'
+      }
+    ]
   }
 ];
 
@@ -64,9 +125,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
         {isOpen && (
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">KE</span>
+              <GraduationCap className="w-5 h-5 text-white" />
             </div>
-            <span className="font-semibold text-gray-900">Kreative Edu</span>
+            <div className="flex flex-col">
+              <span className="font-semibold text-gray-900 text-sm">Kreative Edu</span>
+              <span className="text-xs text-gray-500">SMS + LMS Platform</span>
+            </div>
           </div>
         )}
         
@@ -85,33 +149,42 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       </div>
 
       {/* Navigation menu */}
-      <nav className="mt-4 px-2" role="navigation" aria-label="Main menu">
-        <ul className="space-y-1">
-          {navigationItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <li key={item.name}>
-                <NavLink
-                  to={item.href}
-                  className={({ isActive }) => cn(
-                    "flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200",
-                    isActive
-                      ? "bg-blue-50 text-blue-700 border-r-2 border-blue-700"
-                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900",
-                    !isOpen && "justify-center"
-                  )}
-                  aria-label={isOpen ? item.name : item.description}
-                  title={!isOpen ? item.description : undefined}
-                >
-                  <Icon className={cn("w-5 h-5", isOpen && "mr-3")} />
-                  {isOpen && (
-                    <span className="truncate">{item.name}</span>
-                  )}
-                </NavLink>
-              </li>
-            );
-          })}
-        </ul>
+      <nav className="mt-4 px-2 pb-20 overflow-y-auto" role="navigation" aria-label="Main menu">
+        {navigationSections.map((section) => (
+          <div key={section.title} className="mb-6">
+            {isOpen && (
+              <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                {section.title}
+              </h3>
+            )}
+            <ul className="space-y-1">
+              {section.items.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.name}>
+                    <NavLink
+                      to={item.href}
+                      className={({ isActive }) => cn(
+                        "flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200",
+                        isActive
+                          ? "bg-blue-50 text-blue-700 border-r-2 border-blue-700"
+                          : "text-gray-700 hover:bg-gray-100 hover:text-gray-900",
+                        !isOpen && "justify-center"
+                      )}
+                      aria-label={isOpen ? item.name : item.description}
+                      title={!isOpen ? item.description : undefined}
+                    >
+                      <Icon className={cn("w-5 h-5", isOpen && "mr-3")} />
+                      {isOpen && (
+                        <span className="truncate">{item.name}</span>
+                      )}
+                    </NavLink>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
       </nav>
 
       {/* User role indicator */}

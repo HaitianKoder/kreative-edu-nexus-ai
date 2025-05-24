@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { search, user } from 'lucide-react';
+import { Search, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -16,10 +16,10 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick, sidebarOpen }) => {
         {/* Search bar */}
         <div className="flex-1 max-w-md">
           <div className="relative">
-            <search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <Input
               type="search"
-              placeholder="Search users, courses, or system logs..."
+              placeholder="Search students, courses, or system logs..."
               className="pl-10 pr-4 py-2 w-full"
               aria-label="Search dashboard"
             />
@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuClick, sidebarOpen }) => {
 
           {/* User profile */}
           <Button variant="ghost" size="sm" className="flex items-center space-x-2">
-            <user className="w-4 h-4" />
+            <User className="w-4 h-4" />
             <span className="hidden md:inline">Admin</span>
           </Button>
         </div>
