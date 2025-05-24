@@ -2,13 +2,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
-  layout-dashboard, 
-  users, 
-  settings, 
-  database, 
-  grid-2x2, 
-  chevron-left,
-  chevron-right
+  LayoutDashboard, 
+  Users, 
+  Settings, 
+  Database, 
+  Grid2X2, 
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -21,31 +21,31 @@ const navigationItems = [
   {
     name: 'Dashboard',
     href: '/',
-    icon: layout-dashboard,
+    icon: LayoutDashboard,
     description: 'Overview and analytics'
   },
   {
     name: 'User Management',
     href: '/users',
-    icon: users,
+    icon: Users,
     description: 'Manage students, teachers, and admins'
   },
   {
     name: 'System Health',
     href: '/system',
-    icon: database,
+    icon: Database,
     description: 'Monitor system performance'
   },
   {
     name: 'AI Analytics',
     href: '/ai-analytics',
-    icon: grid-2x2,
+    icon: Grid2X2,
     description: 'AI usage and performance metrics'
   },
   {
     name: 'Settings',
     href: '/settings',
-    icon: settings,
+    icon: Settings,
     description: 'System configuration'
   }
 ];
@@ -77,9 +77,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
           aria-expanded={isOpen}
         >
           {isOpen ? (
-            <chevron-left className="w-5 h-5 text-gray-600" />
+            <ChevronLeft className="w-5 h-5 text-gray-600" />
           ) : (
-            <chevron-right className="w-5 h-5 text-gray-600" />
+            <ChevronRight className="w-5 h-5 text-gray-600" />
           )}
         </button>
       </div>
