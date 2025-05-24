@@ -14,7 +14,8 @@ import {
   UserCheck,
   CreditCard,
   FileText,
-  Calendar
+  Calendar,
+  ArrowUpDown
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -95,6 +96,12 @@ const navigationSections = [
   {
     title: 'System Management',
     items: [
+      {
+        name: 'Migration Center',
+        href: '/migration',
+        icon: ArrowUpDown,
+        description: 'Legacy system migration control'
+      },
       {
         name: 'System Health',
         href: '/system',
