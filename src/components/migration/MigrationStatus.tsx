@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { PlayCircle, PauseCircle, RotateCcw, AlertCircle, CheckCircle, Clock } from 'lucide-react';
+import { PlayCircle, PauseCircle, RotateCcw, AlertCircle, CheckCircle, Clock, Database } from 'lucide-react';
 
 const activeMigrations = [
   {
@@ -67,14 +67,19 @@ export const MigrationStatus: React.FC = () => {
     }
   };
 
-  const getStatusBadge = (status: string) => {
-    const variants = {
-      'in-progress': 'default',
-      'paused': 'secondary',
-      'completed': 'default',
-      'error': 'destructive'
-    };
-    return variants[status as keyof typeof variants] || 'secondary';
+  const getStatusBadge = (status: string): "default" | "secondary" | "destructive" | "outline" => {
+    switch (status) {
+      case 'in-progress':
+        return 'default';
+      case 'paused':
+        return 'secondary';
+      case 'completed':
+        return 'default';
+      case 'error':
+        return 'destructive';
+      default:
+        return 'secondary';
+    }
   };
 
   return (
