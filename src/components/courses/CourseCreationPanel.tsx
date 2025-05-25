@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -39,23 +40,19 @@ export const CourseCreationPanel: React.FC = () => {
     return typeData.color;
   };
 
-  const handleCreateCourse = () => {
+  const handleCreateCourse = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     console.log('🚀 CREATE COURSE BUTTON CLICKED');
+    console.log('Event details:', e.type, e.target);
     console.log('Current pathname before navigation:', location.pathname);
     console.log('Window location before navigation:', window.location.pathname);
     
     try {
       console.log('🔄 Attempting navigation to /courses/create');
-      navigate('/courses/create');
+      navigate('/courses/create', { replace: false });
       console.log('✅ Navigate function called successfully');
-      
-      // Verify navigation after a delay
-      setTimeout(() => {
-        console.log('📍 Post-navigation check:');
-        console.log('- Window pathname:', window.location.pathname);
-        console.log('- Expected: /courses/create');
-        console.log('- Match:', window.location.pathname === '/courses/create' ? '✅' : '❌');
-      }, 100);
       
     } catch (error) {
       console.error('❌ Navigation failed with error:', error);
@@ -93,15 +90,14 @@ export const CourseCreationPanel: React.FC = () => {
         <div>
           <div className="flex items-center justify-between mb-3">
             <h4 className="text-sm font-medium text-gray-700">Course Curriculum</h4>
-            <Button 
-              size="sm" 
-              variant="outline"
+            <button 
+              type="button"
               onClick={handleCreateCourse}
-              className="bg-white hover:bg-gray-50 border border-gray-300"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3"
             >
-              <Plus className="w-4 h-4 mr-1" />
+              <Plus className="w-4 h-4" />
               Create Course
-            </Button>
+            </button>
           </div>
           
           <div className="space-y-2">
