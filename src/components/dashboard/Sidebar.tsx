@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Home, Users, Brain, Database, GraduationCap, MessageSquare, Settings, BarChart4, AlertTriangle } from 'lucide-react';
+import { Home, Users, Brain, Database, GraduationCap, MessageSquare, Settings, BarChart4, AlertTriangle, Target } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -19,6 +18,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onToggle }) => 
       section: "Main Dashboard",
       items: [
         { name: "Dashboard", href: "/", icon: Home },
+        { name: "Executive Dashboard", href: "/executive", icon: Target },
         { name: "Student Management", href: "/students", icon: Users },
       ]
     },
