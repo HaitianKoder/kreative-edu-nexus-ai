@@ -36,8 +36,16 @@ export const CourseCreationPanel: React.FC = () => {
   };
 
   const handleCreateCourse = () => {
-    console.log('Navigating to course creation page');
-    navigate('/courses/create');
+    console.log('Create Course button clicked');
+    console.log('Current location:', window.location.pathname);
+    console.log('Attempting to navigate to /courses/create');
+    
+    try {
+      navigate('/courses/create');
+      console.log('Navigation called successfully');
+    } catch (error) {
+      console.error('Navigation error:', error);
+    }
   };
 
   return (
@@ -75,6 +83,7 @@ export const CourseCreationPanel: React.FC = () => {
               size="sm" 
               variant="outline"
               onClick={handleCreateCourse}
+              type="button"
             >
               <Plus className="w-4 h-4 mr-1" />
               Create Course
