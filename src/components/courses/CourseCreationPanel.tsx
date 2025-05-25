@@ -1,15 +1,17 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { GripVertical, FileText, Video, BookOpen, PenTool, Brain, Upload, Eye, Zap, Plus } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const CourseCreationPanel: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   
-  console.log('CourseCreationPanel rendered, navigate function:', navigate);
+  console.log('CourseCreationPanel rendered');
+  console.log('Current location:', location.pathname);
+  console.log('Navigate function available:', !!navigate);
   
   const contentTypes = [
     { id: 'lecture', name: 'Video Lecture', icon: Video, color: 'blue' },
@@ -38,23 +40,25 @@ export const CourseCreationPanel: React.FC = () => {
   };
 
   const handleCreateCourse = () => {
-    console.log('=== CREATE COURSE BUTTON CLICKED ===');
-    console.log('Current URL before navigation:', window.location.href);
-    console.log('Navigate function type:', typeof navigate);
+    console.log('🚀 CREATE COURSE BUTTON CLICKED');
+    console.log('Current pathname before navigation:', location.pathname);
+    console.log('Window location before navigation:', window.location.pathname);
     
     try {
-      console.log('Calling navigate("/courses/create")...');
+      console.log('🔄 Attempting navigation to /courses/create');
       navigate('/courses/create');
-      console.log('✅ Navigate call completed');
+      console.log('✅ Navigate function called successfully');
       
-      // Check navigation result after brief delay
+      // Verify navigation after a delay
       setTimeout(() => {
-        console.log('Post-navigation URL:', window.location.href);
-        console.log('Post-navigation pathname:', window.location.pathname);
-      }, 50);
+        console.log('📍 Post-navigation check:');
+        console.log('- Window pathname:', window.location.pathname);
+        console.log('- Expected: /courses/create');
+        console.log('- Match:', window.location.pathname === '/courses/create' ? '✅' : '❌');
+      }, 100);
       
     } catch (error) {
-      console.error('❌ Navigation error:', error);
+      console.error('❌ Navigation failed with error:', error);
     }
   };
 
@@ -93,7 +97,7 @@ export const CourseCreationPanel: React.FC = () => {
               size="sm" 
               variant="outline"
               onClick={handleCreateCourse}
-              className="bg-white hover:bg-gray-50"
+              className="bg-white hover:bg-gray-50 border border-gray-300"
             >
               <Plus className="w-4 h-4 mr-1" />
               Create Course

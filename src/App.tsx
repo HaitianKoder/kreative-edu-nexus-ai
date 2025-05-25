@@ -1,8 +1,9 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import Students from "./pages/Students";
 import Migration from "./pages/Migration";
@@ -15,8 +16,14 @@ import SystemHealth from "./pages/SystemHealth";
 
 const queryClient = new QueryClient();
 
+const RouteLogger = () => {
+  const location = useLocation();
+  console.log('🛣️ Current route changed to:', location.pathname);
+  return null;
+};
+
 const App = () => {
-  console.log('App component rendering');
+  console.log('🚀 App component rendering');
   
   return (
     <QueryClientProvider client={queryClient}>
@@ -24,6 +31,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <RouteLogger />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/students" element={<Students />} />
