@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 export const CourseCreationPanel: React.FC = () => {
   const navigate = useNavigate();
   
+  console.log('CourseCreationPanel rendered, navigate function:', navigate);
+  
   const contentTypes = [
     { id: 'lecture', name: 'Video Lecture', icon: Video, color: 'blue' },
     { id: 'reading', name: 'Reading Material', icon: BookOpen, color: 'green' },
@@ -35,16 +37,36 @@ export const CourseCreationPanel: React.FC = () => {
     return typeData.color;
   };
 
-  const handleCreateCourse = () => {
-    console.log('Create Course button clicked');
-    console.log('Current location:', window.location.pathname);
-    console.log('Attempting to navigate to /courses/create');
+  const handleCreateCourse = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log('=== CREATE COURSE BUTTON CLICKED ===');
+    console.log('Event:', event);
+    console.log('Event type:', event.type);
+    console.log('Current URL:', window.location.href);
+    console.log('Current pathname:', window.location.pathname);
+    console.log('Navigate function available:', typeof navigate);
+    
+    // Prevent any default behavior
+    event.preventDefault();
+    event.stopPropagation();
+    
+    console.log('About to call navigate("/courses/create")...');
     
     try {
       navigate('/courses/create');
-      console.log('Navigation called successfully');
+      console.log('✅ Navigation called successfully');
+      
+      // Check if navigation actually happened after a brief delay
+      setTimeout(() => {
+        console.log('After navigation - Current pathname:', window.location.pathname);
+        if (window.location.pathname === '/courses/create') {
+          console.log('✅ Navigation successful!');
+        } else {
+          console.log('❌ Navigation failed - still on:', window.location.pathname);
+        }
+      }, 100);
+      
     } catch (error) {
-      console.error('Navigation error:', error);
+      console.error('❌ Navigation error:', error);
     }
   };
 
@@ -84,6 +106,7 @@ export const CourseCreationPanel: React.FC = () => {
               variant="outline"
               onClick={handleCreateCourse}
               type="button"
+              className="bg-white hover:bg-gray-50"
             >
               <Plus className="w-4 h-4 mr-1" />
               Create Course
