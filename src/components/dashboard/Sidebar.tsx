@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Home, Users, Brain, Database, GraduationCap, MessageSquare, Settings, BarChart4, AlertTriangle, Target } from 'lucide-react';
+import { Home, Users, Brain, Database, GraduationCap, MessageSquare, Settings, BarChart4, AlertTriangle, Target, Calendar, DollarSign, FileText, Activity, Shield, BookOpen } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -15,22 +16,38 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onToggle }) => 
 
   const menuItems = [
     {
-      section: "Main Dashboard",
+      section: "Overview",
       items: [
         { name: "Dashboard", href: "/", icon: Home },
         { name: "Executive Dashboard", href: "/executive", icon: Target },
+      ]
+    },
+    {
+      section: "Academic Operations",
+      items: [
         { name: "Student Management", href: "/students", icon: Users },
+        { name: "Admissions & Registration", href: "/admissions", icon: FileText },
+        { name: "Financial Services", href: "/financial", icon: DollarSign },
+      ]
+    },
+    {
+      section: "Learning Management",
+      items: [
+        { name: "Course Management", href: "/courses", icon: BookOpen },
+        { name: "Academic Calendar", href: "/calendar", icon: Calendar },
       ]
     },
     {
       section: "Analytics & AI",
       items: [
         { name: "AI Analytics", href: "/ai-analytics", icon: Brain },
+        { name: "Reporting & Compliance", href: "/reporting", icon: BarChart4 },
       ]
     },
     {
       section: "System Management",
       items: [
+        { name: "System Health", href: "/system-health", icon: Activity },
         { name: "Migration Center", href: "/migration", icon: Database },
       ]
     }
