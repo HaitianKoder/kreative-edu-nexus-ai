@@ -3,8 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { GripVertical, FileText, Video, BookOpen, PenTool, Brain, Upload, Eye, Zap } from 'lucide-react';
+import { GripVertical, FileText, Video, BookOpen, PenTool, Brain, Upload, Eye, Zap, Plus } from 'lucide-react';
 
 export const CourseCreationPanel: React.FC = () => {
   const contentTypes = [
@@ -44,12 +43,12 @@ export const CourseCreationPanel: React.FC = () => {
       <CardContent className="space-y-6">
         {/* Content Types */}
         <div>
-          <h4 className="text-sm font-medium text-gray-700 mb-3">Drag Content Types to Build Curriculum</h4>
+          <h4 className="text-sm font-medium text-gray-700 mb-3">Content Types Available</h4>
           <div className="grid grid-cols-2 gap-3">
             {contentTypes.map((type) => {
               const Icon = type.icon;
               return (
-                <div key={type.id} className={`p-3 border-2 border-dashed border-${type.color}-200 rounded-lg cursor-grab hover:bg-${type.color}-50 transition-colors`}>
+                <div key={type.id} className={`p-3 border-2 border-dashed border-${type.color}-200 rounded-lg cursor-pointer hover:bg-${type.color}-50 transition-colors`}>
                   <div className="flex items-center space-x-2">
                     <Icon className={`w-4 h-4 text-${type.color}-600`} />
                     <span className="text-sm font-medium">{type.name}</span>
