@@ -35,6 +35,11 @@ export const CourseCreationPanel: React.FC = () => {
     return typeData.color;
   };
 
+  const handleCreateCourse = () => {
+    console.log('Navigating to course creation page');
+    navigate('/courses/create');
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -69,7 +74,7 @@ export const CourseCreationPanel: React.FC = () => {
             <Button 
               size="sm" 
               variant="outline"
-              onClick={() => navigate('/courses/create')}
+              onClick={handleCreateCourse}
             >
               <Plus className="w-4 h-4 mr-1" />
               Create Course
