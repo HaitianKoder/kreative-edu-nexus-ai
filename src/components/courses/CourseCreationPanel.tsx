@@ -37,33 +37,21 @@ export const CourseCreationPanel: React.FC = () => {
     return typeData.color;
   };
 
-  const handleCreateCourse = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleCreateCourse = () => {
     console.log('=== CREATE COURSE BUTTON CLICKED ===');
-    console.log('Event:', event);
-    console.log('Event type:', event.type);
-    console.log('Current URL:', window.location.href);
-    console.log('Current pathname:', window.location.pathname);
-    console.log('Navigate function available:', typeof navigate);
-    
-    // Prevent any default behavior
-    event.preventDefault();
-    event.stopPropagation();
-    
-    console.log('About to call navigate("/courses/create")...');
+    console.log('Current URL before navigation:', window.location.href);
+    console.log('Navigate function type:', typeof navigate);
     
     try {
+      console.log('Calling navigate("/courses/create")...');
       navigate('/courses/create');
-      console.log('✅ Navigation called successfully');
+      console.log('✅ Navigate call completed');
       
-      // Check if navigation actually happened after a brief delay
+      // Check navigation result after brief delay
       setTimeout(() => {
-        console.log('After navigation - Current pathname:', window.location.pathname);
-        if (window.location.pathname === '/courses/create') {
-          console.log('✅ Navigation successful!');
-        } else {
-          console.log('❌ Navigation failed - still on:', window.location.pathname);
-        }
-      }, 100);
+        console.log('Post-navigation URL:', window.location.href);
+        console.log('Post-navigation pathname:', window.location.pathname);
+      }, 50);
       
     } catch (error) {
       console.error('❌ Navigation error:', error);
@@ -86,9 +74,9 @@ export const CourseCreationPanel: React.FC = () => {
             {contentTypes.map((type) => {
               const Icon = type.icon;
               return (
-                <div key={type.id} className={`p-3 border-2 border-dashed border-${type.color}-200 rounded-lg cursor-pointer hover:bg-${type.color}-50 transition-colors`}>
+                <div key={type.id} className="p-3 border-2 border-dashed border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
                   <div className="flex items-center space-x-2">
-                    <Icon className={`w-4 h-4 text-${type.color}-600`} />
+                    <Icon className="w-4 h-4 text-gray-600" />
                     <span className="text-sm font-medium">{type.name}</span>
                   </div>
                 </div>
@@ -105,7 +93,6 @@ export const CourseCreationPanel: React.FC = () => {
               size="sm" 
               variant="outline"
               onClick={handleCreateCourse}
-              type="button"
               className="bg-white hover:bg-gray-50"
             >
               <Plus className="w-4 h-4 mr-1" />
@@ -116,12 +103,11 @@ export const CourseCreationPanel: React.FC = () => {
           <div className="space-y-2">
             {curriculumItems.map((item, index) => {
               const Icon = getTypeIcon(item.type);
-              const color = getTypeColor(item.type);
               
               return (
                 <div key={item.id} className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
                   <GripVertical className="w-4 h-4 text-gray-400 cursor-grab" />
-                  <Icon className={`w-4 h-4 text-${color}-600`} />
+                  <Icon className="w-4 h-4 text-gray-600" />
                   <div className="flex-1">
                     <div className="flex items-center space-x-2">
                       <span className="font-medium text-sm">{item.title}</span>
