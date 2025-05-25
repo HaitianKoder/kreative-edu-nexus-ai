@@ -4,8 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { GripVertical, FileText, Video, BookOpen, PenTool, Brain, Upload, Eye, Zap, Plus } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const CourseCreationPanel: React.FC = () => {
+  const navigate = useNavigate();
+  
   const contentTypes = [
     { id: 'lecture', name: 'Video Lecture', icon: Video, color: 'blue' },
     { id: 'reading', name: 'Reading Material', icon: BookOpen, color: 'green' },
@@ -63,9 +66,13 @@ export const CourseCreationPanel: React.FC = () => {
         <div>
           <div className="flex items-center justify-between mb-3">
             <h4 className="text-sm font-medium text-gray-700">Course Curriculum</h4>
-            <Button size="sm" variant="outline">
+            <Button 
+              size="sm" 
+              variant="outline"
+              onClick={() => navigate('/courses/create')}
+            >
               <Plus className="w-4 h-4 mr-1" />
-              Add Module
+              Create Course
             </Button>
           </div>
           
